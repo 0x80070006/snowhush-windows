@@ -1,0 +1,49 @@
+[package]
+name = "snowhush-win"
+version = "1.1.0"
+edition = "2021"
+description = "Neige sur le bureau Windows : legere, acceleree GPU, transparente aux clics."
+publish = false
+
+[[bin]]
+name = "snowhush"
+path = "src/main.rs"
+
+[dependencies.windows]
+version = "=0.59.0"
+features = [
+    "Foundation_Numerics",
+    "Win32_Foundation",
+    "Win32_Graphics_Direct2D",
+    "Win32_Graphics_Direct2D_Common",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_DirectComposition",
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_Graphics_Gdi",
+    "Win32_Security",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Power",
+    "Win32_System_Registry",
+    "Win32_System_RemoteDesktop",
+    "Win32_System_SystemServices",
+    "Win32_System_Threading",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+# Versions figees : pas de dependance a windows-link (raw-dylib), qui exige
+# dlltool + as avec la toolchain GNU.
+[dependencies]
+windows-result = "=0.3.0"
+windows-strings = "=0.3.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

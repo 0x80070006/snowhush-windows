@@ -1,0 +1,6 @@
+/target/
+/dist/
+/tools/
+*.msi
+*.wixobj
+*.wixpdb
